@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>包袱铺 · 脱口秀编剧部</title>
+  <meta name="description" content="本地运行的喜剧创作工具：单口段子机、小品剧本工坊、谐音梗制造机、段子手账。随机拼装、抖包袱、收包袱。" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- 剧场 -->
+  <div class="theater">
+
+    <!-- 幕布沿 + 砖墙 + 聚光灯 -->
+    <header class="stage">
+      <div class="curtain"></div>
+      <div class="spotlight"></div>
+      <div class="mic-stand">
+        <span class="mic">🎤</span>
+        <i class="pole"></i>
+        <i class="base"></i>
+      </div>
+      <div class="marquee">
+        <h1>包 袱 铺</h1>
+        <p>OPEN MIC · 今晚都是新段子 · 抖出来算你的</p>
+      </div>
+      <span class="stage-light on">● OPEN</span>
+    </header>
+
+    <!-- 剧目 -->
+    <nav class="showtabs" id="showtabs">
+      <button class="stab active" data-t="joke"><i>甲</i>单口段子机</button>
+      <button class="stab" data-t="script"><i>乙</i>小品剧本工坊</button>
+      <button class="stab" data-t="pun"><i>丙</i>谐音梗制造机</button>
+      <button class="stab" data-t="notebook"><i>丁</i>段子手账</button>
+    </nav>
+
+    <main class="floor">
+
+      <!-- ═══ 甲 · 单口段子机 ═══ -->
+      <section class="show on" id="joke">
+        <h2 class="act">第一幕 · 单口段子机</h2>
+        <p class="brief">选个话题，铺一句垫一句，第三句必抖。</p>
+        <div class="topics" id="topics">
+          <button class="topic active" data-k="上班">上班</button>
+          <button class="topic" data-k="减肥">减肥</button>
+          <button class="topic" data-k="恋爱">恋爱</button>
+          <button class="topic" data-k="编程">编程</button>
+          <button class="topic" data-k="考试">考试</button>
+          <button class="topic" data-k="存钱">存钱</button>
+          <button class="topic" data-k="健身">健身</button>
+          <button class="topic" data-k="点外卖">点外卖</button>
+        </div>
+        <div class="joke-card" id="jokeCard" hidden>
+          <p class="setup" id="jokeSetup"></p>
+          <p class="punch" id="jokePunch"></p>
+        </div>
+        <div class="acts">
+          <button class="gold" id="jokeGo">抖 一 个 包 袱</button>
+          <button class="gold ghost" id="jokeSave" hidden>收进手账</button>
+          <button class="gold ghost" id="jokeCopy" hidden>复制</button>
+        </div>
+        <p class="combo-count" id="jokeCount"></p>
+      </section>
+
+      <!-- ═══ 乙 · 小品剧本工坊 ═══ -->
+      <section class="show" id="script" hidden>
+        <h2 class="act">第二幕 · 小品剧本工坊</h2>
+        <p class="brief">给个主题，出人物表和三幕结构，台词现挂。</p>
+        <div class="form-row">
+          <label>主题</label>
+          <input id="scTheme" maxlength="8" placeholder="如：相亲 / 年会 / 体检" />
+          <label>人数</label>
+          <select id="scCast">
+            <option value="2">双人对口</option>
+            <option value="3">三人群戏</option>
+          </select>
+          <label>路数</label>
+          <select id="scStyle">
+            <option value="误会">误会连环</option>
+            <option value="反转">结尾反转</option>
+            <option value="夸张">一路夸张</option>
+            <option value="无厘头">无厘头</option>
+          </select>
+          <button class="gold" id="scGo">开 写</button>
+        </div>
+        <div class="script-sheet" id="scriptSheet" hidden>
+          <div class="sheet-bar">
+            <span id="scTitle">《未命名》</span>
+            <div>
+              <button class="mini" id="scCopy">复制全文</button>
+              <button class="mini" id="scSave">收进手账</button>
+              <button class="mini" id="scRedo">换个写法</button>
+            </div>
+          </div>
+          <pre id="scriptBody"></pre>
+        </div>
+      </section>
+
+      <!-- ═══ 丙 · 谐音梗制造机 ═══ -->
+      <section class="show" id="pun" hidden>
+        <h2 class="act">第三幕 · 谐音梗制造机</h2>
+        <p class="brief">输入一个词，铺子里翻谐音梗；翻不到就扣钱（并不）。</p>
+        <div class="form-row">
+          <input id="punIn" maxlength="8" placeholder="输入关键词，如：焦虑 / 真的 / 谢谢" />
+          <button class="gold" id="punGo">翻 梗</button>
+          <button class="gold ghost" id="punRand">随机来一个</button>
+        </div>
+        <div class="pun-result" id="punResult" hidden>
+          <p class="pun-word" id="punWord"></p>
+          <p class="pun-line" id="punLine"></p>
+          <p class="pun-exp" id="punExp"></p>
+        </div>
+        <p class="pun-note" id="punNote" hidden></p>
+      </section>
+
+      <!-- ═══ 丁 · 段子手账 ═══ -->
+      <section class="show" id="notebook" hidden>
+        <h2 class="act">第四幕 · 段子手账</h2>
+        <p class="brief">收着的包袱都在这，随时翻出来返场。存在本机浏览器里。</p>
+        <div class="acts">
+          <span class="nb-count" id="nbCount">0 条</span>
+          <button class="gold ghost" id="nbCopyAll">复制全部</button>
+          <button class="gold ghost" id="nbClear">清空手账</button>
+        </div>
+        <ul class="nb-list" id="nbList"></ul>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
